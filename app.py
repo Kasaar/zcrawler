@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 from io import StringIO
 from os.path import dirname
 
-start = "https://wikipedia.org"
+start = "https://en.wikipedia.org/wiki/Heart"
 
 crawled = []
 
@@ -19,7 +19,7 @@ def bfs(url):
     for link in doc.find_all('a'):
         l = (link.get('href'))
 
-        if (len(l) < 2):
+        if (l is None or len(l) < 2):
             continue
             
         # Handle '/' links
