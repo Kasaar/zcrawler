@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 from io import StringIO
 from os.path import dirname
 
-start = "https://localhost/test/test.html"
+start = "https://wikipedia.org"
 
 crawled = []
 
@@ -79,7 +79,7 @@ def bfs(url):
             continue
         
         # Handle 'mailto:' links
-        elif (len > 7 and l[0:7] == 'mailto:'):
+        elif (len(l) > 7 and l[0:7] == 'mailto:'):
             continue
         
         # Handle remaining links
