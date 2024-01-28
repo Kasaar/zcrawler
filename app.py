@@ -23,7 +23,7 @@ def bfs(url):
             continue
             
         # Handle '/' links
-        elif (len(l) > 1 and l[0] == '/' and  l[0:2] != '//'):
+        elif (len(l) > 1 and l[0] == '/' and l[0:2] != '//'):
             link_builder = StringIO()
             link_builder.write(parsed_url.scheme)
             link_builder.write("://")
