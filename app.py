@@ -6,6 +6,17 @@ from os.path import dirname
 
 import pymongo
 from urllib.parse import quote_plus
+import sys
+
+uri = input("Input your MongoDB uri: ")
+
+try:
+    client = pymongo.MongoClient(uri)
+  
+# return a friendly error if a URI error is thrown 
+except pymongo.errors.ConfigurationError:
+  print("An Invalid URI host error was received. Is your Atlas host name correct in your connection string?")
+  sys.exit(1)
 
 start = "https://en.wikipedia.org/wiki/Heart"
 
