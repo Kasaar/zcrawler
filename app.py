@@ -4,6 +4,9 @@ from urllib.parse import urlparse
 from io import StringIO
 from os.path import dirname
 
+import pymongo
+from urllib.parse import quote_plus
+
 start = "https://en.wikipedia.org/wiki/Heart"
 
 crawled = []
