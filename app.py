@@ -8,15 +8,21 @@ import pymongo
 from urllib.parse import quote_plus
 import sys
 
+# Get the mongo connection info from user
 uri = input("Input your MongoDB uri: ")
 
+# Try to connect to mongo
 try:
     client = pymongo.MongoClient(uri)
-  
-# return a friendly error if a URI error is thrown 
+# Return a friendly error if a URI error is thrown
 except pymongo.errors.ConfigurationError:
   print("An Invalid URI host error was received. Is your Atlas host name correct in your connection string?")
   sys.exit(1)
+
+# Check if the database exists. If not, make it.
+dbnames = client.list_database_names()
+if 'mydbname' in dbnames:
+    print("Database found. Proceeding...")
 
 start = "https://en.wikipedia.org/wiki/Heart"
 
