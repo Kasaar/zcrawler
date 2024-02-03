@@ -19,10 +19,9 @@ except pymongo.errors.ConfigurationError:
   print("An Invalid URI host error was received. Is your Atlas host name correct in your connection string?")
   sys.exit(1)
 
-# Check if the database exists. If not, make it.
-dbnames = client.list_database_names()
-if 'mydbname' in dbnames:
-    print("Database found. Proceeding...")
+db = client["zcrawler_db"]
+queue_col = db["queue"]
+repository_col = db["repository"]
 
 start = "https://en.wikipedia.org/wiki/Heart"
 
