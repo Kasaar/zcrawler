@@ -8,8 +8,8 @@ import pymongo
 from urllib.parse import quote_plus
 import sys
 
-if __name__ == "__main__":
-    def init_mongo():
+class Crawler:
+    def __init__(self):
         # Get the mongo connection info from user
         uri = input("Input your MongoDB uri: ")
 
@@ -21,12 +21,16 @@ if __name__ == "__main__":
             print("An Invalid URI host error was received. Is your Atlas host name correct in your connection string?")
             sys.exit(1)
 
-        db = client["zcrawler_db"]
-        queue_col = db["queue"]
-        visited_col = db["visited"]
-        repository_col = db["repository"]
+        self.db = client["zcrawler_db"]
+        self.queue_col = self.db["queue"]
+        self.visited_col = self.db["visited"]
+        self.repository_col = self.db["repository"]
 
-    start = "https://en.wikipedia.org/wiki/Heart"
+    def get_start(self):
+        if self.db.collection.count_documents({ 'UserIDS': newID }, limit = 1):
+            return ""
+        else:
+            return "https://en.wikipedia.org/wiki/Heart"
 
     crawled = []
 
