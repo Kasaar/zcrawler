@@ -111,5 +111,3 @@ if __name__ == "__main__":
                 link_builder.write("://")
                 link_builder.write(parsed_url.hostname)
                 link_builder.write(l)
-            
-    bfs(start)
