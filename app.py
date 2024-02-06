@@ -21,6 +21,7 @@ except pymongo.errors.ConfigurationError:
 
 db = client["zcrawler_db"]
 queue_col = db["queue"]
+visited_col = db["visited"]
 repository_col = db["repository"]
 
 start = "https://en.wikipedia.org/wiki/Heart"
