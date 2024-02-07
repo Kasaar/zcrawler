@@ -10,7 +10,7 @@ import sys
 
 class Crawler:
     def __init__(self):
-        # Get the mongo connection info from user
+        # Get mongo connection info from user
         uri = input("Input your MongoDB uri: ")
 
         # Try to connect to mongo
@@ -21,21 +21,26 @@ class Crawler:
             print("An Invalid URI host error was received. Is your Atlas host name correct in your connection string?")
             sys.exit(1)
 
-        self.db = client["zcrawler_db"]
+        self.db = client["zcrawler"]
         self.queue_col = self.db["queue"]
         self.visited_col = self.db["visited"]
         self.repository_col = self.db["repository"]
 
-    def get_start(self):
-        if self.db.collection.count_documents({ 'UserIDS': newID }, limit = 1):
-            return ""
-        else:
+    def get_start(self, input):
+        # Check if any documents exist in the queue
+        if self.queue_col.count_documents({}, limit = 1):
+            output =  self.queue_col.find_one_and_delete({}, projection={'_id': False}, sort = {'_id': 1})
+            print(output)
+            return output
+        elif input == "1":
             return "https://en.wikipedia.org/wiki/Heart"
-
-    crawled = []
+        elif input == "2'":
+            return input("Please enter a link to begin at: ")
+        else:
+            print("Invalid input to get_start().")
+            sys.exit(1)
 
     def bfs(url):
-        
         html_text = requests.get(url).text
         doc = BeautifulSoup(html_text, 'html.parser')
         
