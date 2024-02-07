@@ -29,7 +29,7 @@ class Crawler:
     def get_start(self, input):
         # Check if any documents exist in the queue
         if self.queue_col.count_documents({}, limit = 1):
-            output =  self.queue_col.find_one_and_delete({}, projection={'_id': False}, sort={'_id': 1})
+            output =  self.queue_col.find_one_and_delete({}, projection={'_id': 0}, sort={'_id': 1})
             print(output)
             return output
         elif input == "1":
