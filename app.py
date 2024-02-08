@@ -37,7 +37,7 @@ class Crawler:
         elif input == "2'":
             return input("Please enter a link to begin at: ")
         else:
-            print("Invalid input to get_start().")
+            print("Wasn't able to find anything in queue. Stopping.")
             sys.exit(1)
 
     def bfs(self, url):
