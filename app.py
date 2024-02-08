@@ -40,10 +40,10 @@ class Crawler:
             print("Invalid input to get_start().")
             sys.exit(1)
 
-    def bfs(url):
+    def bfs(self, url):
+        self.visited_col.insert_one( {"url": url} )
         html_text = requests.get(url).text
         doc = BeautifulSoup(html_text, 'html.parser')
-        
         parsed_url = urlparse(url)
         
         # Handle each link in the document
