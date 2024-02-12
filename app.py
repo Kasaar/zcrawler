@@ -37,6 +37,16 @@ class Crawler:
         elif input == "2'":
             return input("Please enter a link to begin at: ")
         else:
+            print("Invalid input to get_start.")
+            sys.exit(1)
+
+    def get_next(self):
+        # Check if any documents exist in the queue
+        if self.queue_col.count_documents({}, limit = 1):
+            output =  self.queue_col.find_one_and_delete({}, sort={'_id': 1}).url
+            print(output)
+            return output
+        else:
             print("Wasn't able to find anything in queue. Stopping.")
             sys.exit(1)
 

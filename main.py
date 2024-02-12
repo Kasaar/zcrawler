@@ -11,5 +11,6 @@ if __name__ == "__main__":
             + "=================================================\n")
 
     crawler = app.Crawler()
-    start = crawler.get_start(usr_input)
-    crawler.bfs(start)
+    crawler.bfs(crawler.get_start(usr_input))
+    while 1:
+        crawler.bfs(crawler.get_next())
