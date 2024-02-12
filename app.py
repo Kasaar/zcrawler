@@ -60,7 +60,10 @@ class Crawler:
         for link in doc.find_all('a'):
             l = (link.get('href'))
 
-            if (l is None or len(l) < 2):
+            if self.visited_col.find_one( {url} ):
+                continue
+
+            elif (l is None or len(l) < 2):
                 continue
                 
             # Handle '/' links
@@ -71,6 +74,7 @@ class Crawler:
                 link_builder.write(parsed_url.hostname)
                 link_builder.write(l)
                 l = link_builder.getvalue()
+                self.queue_col.insert_one( {"url": url} )
                 print(l)
                 
             # Handle '//' links
@@ -80,6 +84,7 @@ class Crawler:
                 link_builder.write(":")
                 link_builder.write(l)
                 l = link_builder.getvalue()
+                self.queue_col.insert_one( {"url": url} )
                 print(l)
                 
             # Handle './' links
@@ -91,6 +96,7 @@ class Crawler:
                 link_builder.write(dirname(parsed_url.path))
                 link_builder.write(l[1:])
                 l = link_builder.getvalue()
+                self.queue_col.insert_one( {"url": url} )
                 print(l)
                 
             # Handle '#' links
@@ -102,6 +108,7 @@ class Crawler:
                 link_builder.write(parsed_url.path)
                 link_builder.write(l)
                 l = link_builder.getvalue()
+                self.queue_col.insert_one( {"url": url} )
                 print(l)
                 
             # Handle '../' links
@@ -113,6 +120,7 @@ class Crawler:
                 link_builder.write('/')
                 link_builder.write(l)
                 l = link_builder.getvalue()
+                self.queue_col.insert_one( {"url": url} )
                 print(l)
                 
             # Handle 'javascript:' links
@@ -130,3 +138,5 @@ class Crawler:
                 link_builder.write("://")
                 link_builder.write(parsed_url.hostname)
                 link_builder.write(l)
+                self.queue_col.insert_one( {"url": url} )
+                print(l)
