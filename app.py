@@ -60,7 +60,7 @@ class Crawler:
         for link in doc.find_all('a'):
             l = (link.get('href'))
 
-            if self.visited_col.find_one( {url} ):
+            if self.visited_col.find_one( {"url": url} ) is not None:
                 continue
 
             elif (l is None or len(l) < 2):
