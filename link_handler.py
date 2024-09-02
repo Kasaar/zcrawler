@@ -2,7 +2,7 @@ from urllib.parse import ParseResult
 from os.path import dirname
 
 class LinkHandler:
-    def fixup_link(l : str, parsed_url : ParseResult) -> str:
+    def fixup_link(self, l : str, parsed_url : ParseResult) -> str:
             if (l is None or len(l) < 2):
                 return None
                 
@@ -49,3 +49,6 @@ class LinkHandler:
                 link_builder = [parsed_url.scheme, "://", parsed_url.hostname, l]
                 ''.join(link_builder)
                 return link_builder
+
+    def in_domain(self, domain : str, parsed_url : ParseResult) -> bool:
+        return 1 if domain == parsed_url.hostname else 0
