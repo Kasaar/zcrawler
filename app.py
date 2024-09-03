@@ -19,7 +19,7 @@ class Crawler:
             if self.client_wrapper.visited_col.find_one( {"url": start} ) is None and self.client_wrapper.queue_col.find_one( {"url": start} ) is None:
                 self.client_wrapper.queue_col.insert_one( {"url": start} )
             self.bfs(self.get_next())
-        elif input == "2'":
+        elif input == "2":
             self.domain = input("Please enter the domain to index (e.g. e.wikipedia.org): ")
             start = input("Please enter a full url within the domain to begin at (e.g. https://en.wikipedia.org/wiki/Main_Page): ")
             if self.client_wrapper.visited_col.find_one( {"url": start} ) is None and self.client_wrapper.queue_col.find_one( {"url": start} ) is None:
