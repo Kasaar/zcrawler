@@ -61,6 +61,7 @@ To obtain the URI for a cluster using Atlas:
 1. Log in to MongoDB
 2. Navigate to Security -> Database Access
 3. Find a user and password with sufficient permissions and input them into the form below:
-2. mongodb+srv://<db_username>:<db_password>@cluster0.9vyo3he.mongodb.net/?retryWrites=true&w=majority&appName=<cluster_name>
+4. mongodb+srv://<db_username>:<db_password>@cluster0.9vyo3he.mongodb.net/?retryWrites=true&w=majority&appName=<cluster_name>
+Where `<db_username>`, `<db_password>`, and `<cluster_name>` are dependent on your implementation.
 
 https://pymongo.readthedocs.io/en/stable/examples/tls.html
